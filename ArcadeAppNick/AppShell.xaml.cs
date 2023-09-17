@@ -1,0 +1,17 @@
+﻿namespace ArcadeAppNick;
+
+public partial class AppShell : Shell
+{
+	public AppShell()
+	{
+		InitializeComponent();
+
+        Routing.RegisterRoute("arcade_main", typeof(MainPage)); 
+
+		Routing.RegisterRoute("quiz_home", typeof(Quiz_HomePage));
+        Routing.RegisterRoute("quiz_main", typeof(Quiz_MainPage));
+
+        Routing.RegisterRoute("storybook_home", typeof(Storybook_HomePage));
+        Routing.RegisterRoute("storybook_main", typeof(Storybook_MainPage));
+    }
+}

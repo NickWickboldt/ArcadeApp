@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="10">
+            <Label 
+                Text="Arcade App"
+                FontSize="50"
+                HorizontalOptions="Center"
+                TextColor="GreenYellow"
+                />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <VerticalStackLayout Grid.Column="0" Grid.Row="0" WidthRequest="600" Spacing="5">
+                    <ImageButton 
+                        Source="quiz_splash.webp" 
+                        WidthRequest="600"
+                        HeightRequest="400"
+                        Padding="20"
+                        Margin="10"
+                        x:Name="ImageButton1"
+                        Clicked="ImageButton1_Clicked"
+                        />
+                    <Label 
+                        Text="Animal Quiz"
+                        FontSize="30"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="This is a quiz all about animals! Can you beat the high score?"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="25"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Grid.Row="0" WidthRequest="600" Spacing="5">
+                    <ImageButton 
+                        Source="storybook_splash.jpg" 
+                        WidthRequest="600"
+                        HeightRequest="400"
+                        Padding="20"
+                        Margin="10"
+                        x:Name="ImageButton2"
+                        Clicked="ImageButton2_Clicked"
+                        />
+                    <Label 
+                        Text="Storybook"
+                        FontSize="30"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Choose your own adventure! Can you complete all the endings?"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="25"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="0" Grid.Row="1" WidthRequest="600" Spacing="5">
+                    <ImageButton 
+                        Source="dotnet_bot.png" 
+                        WidthRequest="600"
+                        HeightRequest="400"
+                        Padding="20"
+                        Margin="10"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton3"
+                        Clicked="ImageButton3_Clicked"
+                        />
+                    <Label 
+                        Text="Quiz App"
+                        FontSize="30"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="This is a quiz app! Answer all the question correctly to get the high score!"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="25"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Grid.Row="1" WidthRequest="600" Spacing="5">
+                    <ImageButton 
+                        Source="dotnet_bot.png" 
+                        WidthRequest="600"
+                        HeightRequest="400"
+                        Padding="20"
+                        Margin="10"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton4"
+                        Clicked="ImageButton4_Clicked"
+                        />
+                    <Label 
+                        Text="Quiz App"
+                        FontSize="30"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="This is a quiz app! Answer all the question correctly to get the high score!"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="25"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="0" Grid.Row="2" WidthRequest="600" Spacing="5">
+                    <ImageButton 
+                        Source="dotnet_bot.png" 
+                        WidthRequest="600"
+                        HeightRequest="400"
+                        Padding="20"
+                        Margin="10"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton5"
+                        Clicked="ImageButton5_Clicked"
+                        />
+                    <Label 
+                        Text="Quiz App"
+                        FontSize="30"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="This is a quiz app! Answer all the question correctly to get the high score!"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="25"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Grid.Row="2" WidthRequest="600" Spacing="5">
+                    <ImageButton 
+                        Source="dotnet_bot.png" 
+                        WidthRequest="600"
+                        HeightRequest="400"
+                        Padding="20"
+                        Margin="10"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton6"
+                        Clicked="ImageButton6_Clicked"
+                        />
+                    <Label 
+                        Text="Quiz App"
+                        FontSize="30"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="This is a quiz app! Answer all the question correctly to get the high score!"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="25"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        />
+                </VerticalStackLayout>
+            </Grid>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
