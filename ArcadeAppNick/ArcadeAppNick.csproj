@@ -58,7 +58,15 @@
 	  <None Remove="Resources\Images\jaguar.jpg" />
 	  <None Remove="Resources\Images\page_1_img.png" />
 	  <None Remove="Resources\Images\page_2a_img.jpg" />
+	  <None Remove="Resources\Images\page_2b_img.jpg" />
 	  <None Remove="Resources\Images\page_3a_img.webp" />
+	  <None Remove="Resources\Images\page_3b_img.jpg" />
+	  <None Remove="Resources\Images\page_3c_img.jpg" />
+	  <None Remove="Resources\Images\page_3d_img.jpg" />
+	  <None Remove="Resources\Images\page_3e_img.jpg" />
+	  <None Remove="Resources\Images\page_4a_img.jpg" />
+	  <None Remove="Resources\Images\page_4b_img.jpg" />
+	  <None Remove="Resources\Images\page_4c_img.jpg" />
 	  <None Remove="Resources\Images\penguin.jpg" />
 	  <None Remove="Resources\Images\shrew.jpg" />
 	  <None Remove="Resources\Images\squid.jpg" />
