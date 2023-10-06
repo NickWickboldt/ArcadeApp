@@ -21,9 +21,10 @@ public partial class MainPage : ContentPage
         await Shell.Current.GoToAsync("storybook_home"); 
     }
 
-    private void ImageButton3_Clicked(object sender, EventArgs e)
+    private async void ImageButton3_Clicked(object sender, EventArgs e)
     {
         ImageButton3.BackgroundColor = Colors.Beige;
+        await Shell.Current.GoToAsync("platform_home"); 
     }
 
     private void ImageButton4_Clicked(object sender, EventArgs e)

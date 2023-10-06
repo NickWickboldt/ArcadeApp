@@ -68,6 +68,8 @@
 	  <None Remove="Resources\Images\page_4b_img.jpg" />
 	  <None Remove="Resources\Images\page_4c_img.jpg" />
 	  <None Remove="Resources\Images\penguin.jpg" />
+	  <None Remove="Resources\Images\platform_background.webp" />
+	  <None Remove="Resources\Images\platform_splash.jpg" />
 	  <None Remove="Resources\Images\shrew.jpg" />
 	  <None Remove="Resources\Images\squid.jpg" />
 	  <None Remove="Resources\Images\wolf.jpg" />
@@ -79,6 +81,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Platform_HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Platform_MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Quiz_HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

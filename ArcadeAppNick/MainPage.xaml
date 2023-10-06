@@ -81,7 +81,7 @@
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Column="0" Grid.Row="1" WidthRequest="600" Spacing="5">
                     <ImageButton 
-                        Source="dotnet_bot.png" 
+                        Source="platform_splash.jpg" 
                         WidthRequest="600"
                         HeightRequest="400"
                         Padding="20"
@@ -91,13 +91,13 @@
                         Clicked="ImageButton3_Clicked"
                         />
                     <Label 
-                        Text="Quiz App"
+                        Text="Platform Game"
                         FontSize="30"
                         HorizontalOptions="Start"
                         TextColor="GreenYellow"
                         />
                     <Label 
-                        Text="This is a quiz app! Answer all the question correctly to get the high score!"
+                        Text="This is a platform game! Time your jumps to gain the high score!"
                         FontSize="20"
                         HorizontalOptions="Start"
                         TextColor="GreenYellow"
