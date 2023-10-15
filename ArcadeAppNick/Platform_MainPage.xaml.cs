@@ -2,7 +2,9 @@ namespace ArcadeAppNick;
 
 public partial class Platform_MainPage : ContentPage
 {
-    private Player user; 
+    private bool gridReady; 
+    private Player user;
+    private Platform[] platformList = new Platform[4]; 
     public int level = 1;
     public int score = 0;
     public Label scoreLabel;
@@ -15,8 +17,8 @@ public partial class Platform_MainPage : ContentPage
 
     private void Start_Button_Clicked(object sender, EventArgs e)
     {
-        Fill_Grid(); 
-
+        Fill_Grid();
+        gridReady = true; 
         Start_Button.IsEnabled = false; 
     }
 
@@ -49,6 +51,7 @@ public partial class Platform_MainPage : ContentPage
                         ZIndex = 1
                     };
                     Platform newPlat = new Platform(newRect, i, j);
+                    platformList[i] = newPlat;
                     gameGrid.Add(newRect, newPlat.col, newPlat.row);
                 }
 
@@ -93,6 +96,14 @@ public partial class Platform_MainPage : ContentPage
         user = new Player(userIcon, 4, 2);
         return user;
     }
+
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        if (gridReady)
+        {
+            gridReady = user.Jump(gameGrid, platformList, gridReady, this); 
+        }
+    }
 }
 
 public class Player
@@ -107,6 +118,30 @@ public class Player
         row = r;
         col = c;
     }
+
+    public bool Jump(Grid g, Platform[] list, bool con, Platform_MainPage page)
+    {
+        if (this.row == 0)
+        {
+            //reached top -> new level
+        }
+        else
+        {
+            g.SetRow(this.image, this.row -= 1);
+            Platform plat = list[this.row];
+            if(this.row == plat.row && this.col == plat.col)
+            {
+                page.score++;
+                page.scoreLabel.Text = "Score: " + page.score;
+
+            }
+            else
+            {
+
+            }
+        }
+        return con; 
+    }
 }
 
 public class Platform
@@ -117,9 +152,9 @@ public class Platform
 
     public Platform(BoxView rectangle, int r, int c)
     {
-        this.rect = rectangle;
-        this.row = r;
-        this.col = c;
+        rect = rectangle;
+        row = r;
+        col = c;
 
     }
 }

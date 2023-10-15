@@ -5,6 +5,11 @@
              Title="Platform_MainPage">
 
     <AbsoluteLayout x:Name="Canvas" Background="DarkGreen">
+        <AbsoluteLayout.GestureRecognizers>
+            <TapGestureRecognizer
+                Tapped="TapGestureRecognizer_Tapped"
+                Buttons="Primary"/>
+        </AbsoluteLayout.GestureRecognizers>
         <Grid
             x:Name="gameGrid"
             RowDefinitions="*,*,*,*,*"
