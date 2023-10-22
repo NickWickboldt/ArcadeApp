@@ -9,6 +9,7 @@ public partial class Platform_MainPage : ContentPage
     public int score = 0;
     public Label scoreLabel;
     public Label levelLabel;
+    public double difficulty = 1000; 
 
     public Platform_MainPage()
 	{
@@ -88,6 +89,13 @@ public partial class Platform_MainPage : ContentPage
         gameGrid.Add(user.image, user.col, user.row);
         await Task.Delay(100);
         gameGrid.Add(levelLabel, 4, 4);
+
+        foreach(Platform plat in platformList)
+        {
+            plat.isMovingRight = true;
+            plat.Oscillate(gameGrid, this);
+        }
+
     }
 
     private Player Create_User()
@@ -133,7 +141,7 @@ public class Player
             {
                 page.score++;
                 page.scoreLabel.Text = "Score: " + page.score;
-
+                plat.StopMovement(); 
             }
             else
             {
@@ -149,12 +157,62 @@ public class Platform
     public BoxView rect;
     public int row;
     public int col;
+    public bool isMovingLeft; 
+    public bool isMovingRight;
 
     public Platform(BoxView rectangle, int r, int c)
     {
         rect = rectangle;
         row = r;
         col = c;
+        isMovingRight = true; 
+        isMovingLeft = false;
+    }
 
+    public void StopMovement()
+    {
+        isMovingLeft = false;
+        isMovingRight = false;
+    }
+
+    async public void Oscillate(Grid g, Platform_MainPage page)
+    {
+        int boundaryLeft = 0;
+        int boundaryRight = 4;
+        var rand = new Random();
+        await Task.Delay(rand.Next(1000)); 
+        MoveRight(g, boundaryLeft, boundaryRight, page); //start movement
+    }
+
+    async public void MoveRight(Grid g, int limitLeft, int limitRight, Platform_MainPage page)
+    {
+        while(col < limitRight && isMovingRight)
+        {
+            col++;
+            g.SetColumn(rect, col);
+            await Task.Delay((int)page.difficulty);
+        }
+        if (isMovingRight)
+        {
+            isMovingLeft = true;
+            isMovingRight = false;
+            MoveLeft(g, limitLeft, limitRight, page);
+        }
+    }
+
+    async public void MoveLeft(Grid g, int limitLeft, int limitRight, Platform_MainPage page) 
+    {
+        while (col > limitLeft && isMovingLeft) //while no collision
+        {
+            col--;
+            g.SetColumn(rect, col);
+            await Task.Delay((int)page.difficulty);
+        }
+        if (isMovingLeft) //if there has not been a collision
+        {
+            isMovingRight = true;
+            isMovingLeft = false;
+            MoveRight(g, limitLeft, limitRight, page);
+        }
     }
 }
