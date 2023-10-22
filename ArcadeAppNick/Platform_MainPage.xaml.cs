@@ -18,77 +18,94 @@ public partial class Platform_MainPage : ContentPage
 
     private void Start_Button_Clicked(object sender, EventArgs e)
     {
-        Fill_Grid();
+        Fill_Grid(true);
         gridReady = true; 
         Start_Button.IsEnabled = false; 
     }
 
     private void Reset_Button_Clicked(object sender, EventArgs e)
     {
-       
+        gameGrid.Clear();
+        Start_Button.IsEnabled = true;
+        gridReady = true;
+        score = 0;
+        level = 1;
+        Start_Button.Text = "Play!";
     }
 
-    async public void Fill_Grid()
+    async public void Fill_Grid(bool start)
     {
-        int rows = 5;
-        int columns = 5;
-        
-        for(int i = 0; i < rows; i++)
-        {
-            for(int j = 0; j < columns; j++)
+        if (start) {
+            int rows = 5;
+            int columns = 5;
+
+            for (int i = 0; i < rows; i++)
             {
-                StackLayout unit = new StackLayout() { ZIndex = 0 };
-                unit.BackgroundColor = Colors.LightSkyBlue;
-                gameGrid.Add(unit, j, i);
-
-                if(i < 4 && j == 0)
+                for (int j = 0; j < columns; j++)
                 {
-                    BoxView newRect = new BoxView()
-                    {
-                        HeightRequest = 20,
-                        Color = Colors.Green,
-                        VerticalOptions = LayoutOptions.End,
-                        CornerRadius = 10,
-                        ZIndex = 1
-                    };
-                    Platform newPlat = new Platform(newRect, i, j);
-                    platformList[i] = newPlat;
-                    gameGrid.Add(newRect, newPlat.col, newPlat.row);
-                }
+                    StackLayout unit = new StackLayout() { ZIndex = 0 };
+                    unit.BackgroundColor = Colors.LightSkyBlue;
+                    gameGrid.Add(unit, j, i);
 
-                await Task.Delay(100); 
+                    if (i < 4 && j == 0)
+                    {
+                        BoxView newRect = new BoxView()
+                        {
+                            HeightRequest = 20,
+                            Color = Colors.Green,
+                            VerticalOptions = LayoutOptions.End,
+                            CornerRadius = 10,
+                            ZIndex = 1
+                        };
+                        Platform newPlat = new Platform(newRect, i, j);
+                        platformList[i] = newPlat;
+                        gameGrid.Add(newRect, newPlat.col, newPlat.row);
+                    }
+
+                    await Task.Delay(100);
+                }
+            }
+
+            scoreLabel = new Label()
+            {
+                Text = "Score: " + score,
+                FontSize = 30,
+                ZIndex = 1,
+                TextColor = Colors.White,
+                Margin = new Thickness(10),
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center,
+            };
+
+            levelLabel = new Label()
+            {
+                Text = "Level: " + level,
+                FontSize = 30,
+                ZIndex = 1,
+                TextColor = Colors.White,
+                Margin = new Thickness(10),
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center,
+            };
+
+            await Task.Delay(100);
+            gameGrid.Add(scoreLabel, 0, 4);
+            await Task.Delay(100);
+            user = Create_User();
+            gameGrid.Add(user.image, user.col, user.row);
+            await Task.Delay(100);
+            gameGrid.Add(levelLabel, 4, 4);
+        }
+        else //reset user and platforms --> Level Reset State
+        {
+            user.row = 4;
+            gameGrid.SetRow(user.image, user.row);
+            foreach (Platform plat in platformList)
+            {
+                plat.col = 0;
+                gameGrid.SetColumn(plat.rect, plat.col); 
             }
         }
-
-        scoreLabel = new Label()
-        {
-            Text = "Score: " + score,
-            FontSize = 30,
-            ZIndex = 1,
-            TextColor = Colors.White,
-            Margin = new Thickness(10),
-            VerticalOptions = LayoutOptions.Center,
-            HorizontalOptions = LayoutOptions.Center,
-        };
-
-        levelLabel = new Label()
-        {
-            Text = "Level: " + level,
-            FontSize = 30,
-            ZIndex = 1,
-            TextColor = Colors.White,
-            Margin = new Thickness(10),
-            VerticalOptions = LayoutOptions.Center,
-            HorizontalOptions = LayoutOptions.Center,
-        };
-
-        await Task.Delay(100);
-        gameGrid.Add(scoreLabel, 0, 4);
-        await Task.Delay(100); 
-        user = Create_User();
-        gameGrid.Add(user.image, user.col, user.row);
-        await Task.Delay(100);
-        gameGrid.Add(levelLabel, 4, 4);
 
         foreach(Platform plat in platformList)
         {
@@ -110,6 +127,10 @@ public partial class Platform_MainPage : ContentPage
         if (gridReady)
         {
             gridReady = user.Jump(gameGrid, platformList, gridReady, this); 
+            if(gridReady == false)
+            {
+                Start_Button.Text = "Game Over!"; 
+            }
         }
     }
 }
@@ -131,7 +152,10 @@ public class Player
     {
         if (this.row == 0)
         {
-            //reached top -> new level
+            page.difficulty = page.difficulty * 0.9;
+            page.level++; 
+            page.levelLabel.Text = "Level: " + page.level;
+            page.Fill_Grid(false); 
         }
         else
         {
@@ -145,7 +169,7 @@ public class Player
             }
             else
             {
-
+                con = false; //gameover
             }
         }
         return con; 
@@ -186,13 +210,13 @@ public class Platform
 
     async public void MoveRight(Grid g, int limitLeft, int limitRight, Platform_MainPage page)
     {
-        while(col < limitRight && isMovingRight)
+        while(col < limitRight && isMovingRight)// while no collision
         {
             col++;
             g.SetColumn(rect, col);
             await Task.Delay((int)page.difficulty);
         }
-        if (isMovingRight)
+        if (isMovingRight)// if there has not been a collision
         {
             isMovingLeft = true;
             isMovingRight = false;
@@ -202,13 +226,13 @@ public class Platform
 
     async public void MoveLeft(Grid g, int limitLeft, int limitRight, Platform_MainPage page) 
     {
-        while (col > limitLeft && isMovingLeft) //while no collision
+        while (col > limitLeft && isMovingLeft) // while no collision
         {
             col--;
             g.SetColumn(rect, col);
             await Task.Delay((int)page.difficulty);
         }
-        if (isMovingLeft) //if there has not been a collision
+        if (isMovingLeft) // if there has not been a collision
         {
             isMovingRight = true;
             isMovingLeft = false;
