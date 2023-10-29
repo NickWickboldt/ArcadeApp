@@ -2,25 +2,28 @@ namespace ArcadeAppNick;
 
 public partial class Platform_MainPage : ContentPage
 {
-    private bool gridReady; 
+    public bool gridReady;
     private Player user;
-    private Platform[] platformList = new Platform[4]; 
+    private Platform[] platformList = new Platform[4];
     public int level = 1;
     public int score = 0;
     public Label scoreLabel;
     public Label levelLabel;
-    public double difficulty = 1000; 
+    public double difficulty = 1000;
+    public CloudEnemy cloud;
+    public Button startButton;
 
     public Platform_MainPage()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+        startButton = Start_Button;
+    }
 
     private void Start_Button_Clicked(object sender, EventArgs e)
     {
         Fill_Grid(true);
-        gridReady = true; 
-        Start_Button.IsEnabled = false; 
+        gridReady = true;
+        Start_Button.IsEnabled = false;
     }
 
     private void Reset_Button_Clicked(object sender, EventArgs e)
@@ -35,7 +38,10 @@ public partial class Platform_MainPage : ContentPage
 
     async public void Fill_Grid(bool start)
     {
-        if (start) {
+        var randCloudPosition = new Random();
+        int cloudRow = randCloudPosition.Next(4);
+        if (start)
+        {
             int rows = 5;
             int columns = 5;
 
@@ -95,23 +101,31 @@ public partial class Platform_MainPage : ContentPage
             gameGrid.Add(user.image, user.col, user.row);
             await Task.Delay(100);
             gameGrid.Add(levelLabel, 4, 4);
+
+            Image cloudIMG = new Image() { Source = "cloud_enemy.png" };
+            cloud = new CloudEnemy(cloudIMG, cloudRow, 4, user);
+            gameGrid.Add(cloudIMG, 4, cloudRow);
+            cloud.Oscillate(gameGrid, this);
         }
         else //reset user and platforms --> Level Reset State
         {
             user.row = 4;
             gameGrid.SetRow(user.image, user.row);
+            cloud.row = cloudRow;
+            gameGrid.SetRow(cloud.cloudImage, cloudRow);
             foreach (Platform plat in platformList)
             {
                 plat.col = 0;
-                gameGrid.SetColumn(plat.rect, plat.col); 
+                gameGrid.SetColumn(plat.rect, plat.col);
             }
         }
 
-        foreach(Platform plat in platformList)
+        foreach (Platform plat in platformList)
         {
             plat.isMovingRight = true;
             plat.Oscillate(gameGrid, this);
         }
+
 
     }
 
@@ -126,10 +140,10 @@ public partial class Platform_MainPage : ContentPage
     {
         if (gridReady)
         {
-            gridReady = user.Jump(gameGrid, platformList, gridReady, this); 
-            if(gridReady == false)
+            gridReady = user.Jump(gameGrid, platformList, gridReady, this);
+            if (gridReady == false)
             {
-                Start_Button.Text = "Game Over!"; 
+                Start_Button.Text = "Game Over!";
             }
         }
     }
@@ -139,11 +153,11 @@ public class Player
 {
     public Image image;
     public int row;
-    public int col; 
+    public int col;
 
     public Player(Image i, int r, int c)
     {
-        image = i; 
+        image = i;
         row = r;
         col = c;
     }
@@ -153,26 +167,32 @@ public class Player
         if (this.row == 0)
         {
             page.difficulty = page.difficulty * 0.9;
-            page.level++; 
+            page.level++;
             page.levelLabel.Text = "Level: " + page.level;
-            page.Fill_Grid(false); 
+            page.Fill_Grid(false);
         }
         else
         {
             g.SetRow(this.image, this.row -= 1);
             Platform plat = list[this.row];
-            if(this.row == plat.row && this.col == plat.col)
+            if (this.row == plat.row && this.col == plat.col)
             {
                 page.score++;
                 page.scoreLabel.Text = "Score: " + page.score;
-                plat.StopMovement(); 
+                plat.StopMovement();
             }
             else
             {
                 con = false; //gameover
             }
         }
-        return con; 
+        return con;
+    }
+    public void Destroy(Grid g, Platform_MainPage page)
+    {
+        page.gridReady = false;
+        g.Remove(image);
+        page.startButton.Text = "Game Over!";
     }
 }
 
@@ -181,7 +201,7 @@ public class Platform
     public BoxView rect;
     public int row;
     public int col;
-    public bool isMovingLeft; 
+    public bool isMovingLeft;
     public bool isMovingRight;
 
     public Platform(BoxView rectangle, int r, int c)
@@ -189,7 +209,7 @@ public class Platform
         rect = rectangle;
         row = r;
         col = c;
-        isMovingRight = true; 
+        isMovingRight = true;
         isMovingLeft = false;
     }
 
@@ -204,13 +224,13 @@ public class Platform
         int boundaryLeft = 0;
         int boundaryRight = 4;
         var rand = new Random();
-        await Task.Delay(rand.Next(1000)); 
+        await Task.Delay(rand.Next(1000));
         MoveRight(g, boundaryLeft, boundaryRight, page); //start movement
     }
 
     async public void MoveRight(Grid g, int limitLeft, int limitRight, Platform_MainPage page)
     {
-        while(col < limitRight && isMovingRight)// while no collision
+        while (col < limitRight && isMovingRight)// while no collision
         {
             col++;
             g.SetColumn(rect, col);
@@ -224,7 +244,7 @@ public class Platform
         }
     }
 
-    async public void MoveLeft(Grid g, int limitLeft, int limitRight, Platform_MainPage page) 
+    async public void MoveLeft(Grid g, int limitLeft, int limitRight, Platform_MainPage page)
     {
         while (col > limitLeft && isMovingLeft) // while no collision
         {
@@ -238,5 +258,61 @@ public class Platform
             isMovingLeft = false;
             MoveRight(g, limitLeft, limitRight, page);
         }
+    }
+}
+
+public class CloudEnemy
+{
+    public Image cloudImage;
+    public int row;
+    public int col;
+    public Player user;
+
+    public CloudEnemy(Image i, int r, int c, Player u)
+    {
+        cloudImage = i;
+        row = r;
+        col = c;
+        user = u;
+    }
+    public void Oscillate(Grid g, Platform_MainPage page)
+    {
+        int boundaryLeft = 0;
+        int boundaryRight = 4;
+        MoveLeft(g, boundaryLeft, boundaryRight, page);
+    }
+    async public void MoveLeft(Grid g, int limitLeft, int limitRight, Platform_MainPage page)
+    {
+        while (col > limitLeft)
+        {
+            col--;
+            g.SetColumn(cloudImage, col);
+            if (col == user.col && row == user.row)
+            {
+                user.Destroy(g, page);
+                return;
+            }
+            await Task.Delay(500);
+        }
+
+        MoveRight(g, limitLeft, limitRight, page);
+
+    }
+    async public void MoveRight(Grid g, int limitLeft, int limitRight, Platform_MainPage page)
+    {
+        while (col < limitRight)
+        {
+            col++;
+            g.SetColumn(cloudImage, col);
+            if (col == user.col && row == user.row)
+            {
+                user.Destroy(g, page);
+                return;
+            }
+            await Task.Delay(500);
+        }
+
+        MoveLeft(g, limitLeft, limitRight, page);
+
     }
 }
