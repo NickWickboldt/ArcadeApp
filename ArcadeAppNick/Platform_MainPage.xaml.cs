@@ -1,3 +1,5 @@
+using CommunityToolkit.Maui.Views;
+
 namespace ArcadeAppNick;
 
 public partial class Platform_MainPage : ContentPage
@@ -12,11 +14,13 @@ public partial class Platform_MainPage : ContentPage
     public double difficulty = 1000;
     public CloudEnemy cloud;
     public Button startButton;
+    public MediaElement gameOver; 
 
     public Platform_MainPage()
     {
         InitializeComponent();
         startButton = Start_Button;
+        gameOver = Game_Over_Sound; 
     }
 
     private void Start_Button_Clicked(object sender, EventArgs e)
@@ -24,6 +28,7 @@ public partial class Platform_MainPage : ContentPage
         Fill_Grid(true);
         gridReady = true;
         Start_Button.IsEnabled = false;
+        Grid_Sound.Play(); 
     }
 
     private void Reset_Button_Clicked(object sender, EventArgs e)
@@ -184,6 +189,7 @@ public class Player
             else
             {
                 con = false; //gameover
+                page.gameOver.Play();  
             }
         }
         return con;
@@ -193,6 +199,7 @@ public class Player
         page.gridReady = false;
         g.Remove(image);
         page.startButton.Text = "Game Over!";
+        page.gameOver.Play();
     }
 }
 

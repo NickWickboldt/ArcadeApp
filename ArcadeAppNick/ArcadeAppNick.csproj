@@ -54,6 +54,7 @@
 	  <None Remove="Resources\Images\crow.jpg" />
 	  <None Remove="Resources\Images\eagle.jpg" />
 	  <None Remove="Resources\Images\giraffe.jpg" />
+	  <None Remove="Resources\Images\grid_sound.mp3" />
 	  <None Remove="Resources\Images\homebackground.png" />
 	  <None Remove="Resources\Images\homepagebackground.jpg" />
 	  <None Remove="Resources\Images\jaguar.jpg" />
@@ -75,9 +76,15 @@
 	  <None Remove="Resources\Images\squid.jpg" />
 	  <None Remove="Resources\Images\wolf.jpg" />
 	  <None Remove="Resources\Images\zebra.jpg" />
+	  <None Remove="Resources\Raw\game_over.mp3" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Raw\grid_sound.mp3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
