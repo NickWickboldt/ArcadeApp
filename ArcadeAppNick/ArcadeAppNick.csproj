@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\clicker_background.jpeg" />
 	  <None Remove="Resources\Images\cloud_enemy.png" />
 	  <None Remove="Resources\Images\croc.jpg" />
 	  <None Remove="Resources\Images\crow.jpg" />
@@ -58,6 +59,7 @@
 	  <None Remove="Resources\Images\homebackground.png" />
 	  <None Remove="Resources\Images\homepagebackground.jpg" />
 	  <None Remove="Resources\Images\jaguar.jpg" />
+	  <None Remove="Resources\Images\mouse_pointer.png" />
 	  <None Remove="Resources\Images\page_1_img.png" />
 	  <None Remove="Resources\Images\page_2a_img.jpg" />
 	  <None Remove="Resources\Images\page_2b_img.jpg" />
@@ -89,6 +91,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Clicker_HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Clicker_MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Platform_HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
