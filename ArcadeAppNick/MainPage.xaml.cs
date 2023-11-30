@@ -11,36 +11,54 @@ public partial class MainPage : ContentPage
 
     private async void ImageButton1_Clicked(object sender, EventArgs e)
     {
-		ImageButton1.BackgroundColor = Colors.Pink;
         await Shell.Current.GoToAsync("quiz_home"); 
     }
 
     private async void ImageButton2_Clicked(object sender, EventArgs e)
     {
-        ImageButton2.BackgroundColor = Colors.Red;
         await Shell.Current.GoToAsync("storybook_home"); 
     }
 
     private async void ImageButton3_Clicked(object sender, EventArgs e)
     {
-        ImageButton3.BackgroundColor = Colors.Beige;
         await Shell.Current.GoToAsync("platform_home"); 
     }
 
     private async void ImageButton4_Clicked(object sender, EventArgs e)
     {
-        ImageButton4.BackgroundColor = Colors.Green;
         await Shell.Current.GoToAsync("clicker_home"); 
     }
 
     private void ImageButton5_Clicked(object sender, EventArgs e)
     {
-        ImageButton5.BackgroundColor = Colors.Orange;
+
     }
 
     private void ImageButton6_Clicked(object sender, EventArgs e)
     {
-        ImageButton6.BackgroundColor = Colors.Violet;
+
+    }
+
+    private void AbsoluteLayout_SizeChanged(object sender, EventArgs e)
+    {
+        if(Width < 700)
+        {
+            App_Desc1.IsVisible = false;
+            App_Desc2.IsVisible = false;
+            App_Desc3.IsVisible = false;
+            App_Desc4.IsVisible = false;
+            App_Desc5.IsVisible = false;
+            App_Desc6.IsVisible = false;
+        }
+        else
+        {
+            App_Desc1.IsVisible = true;
+            App_Desc2.IsVisible = true;
+            App_Desc3.IsVisible = true;
+            App_Desc4.IsVisible = true;
+            App_Desc5.IsVisible = true;
+            App_Desc6.IsVisible = true;
+        }
     }
 }
 

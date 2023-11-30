@@ -4,7 +4,7 @@
              x:Class="ArcadeAppNick.Storybook_MainPage"
              Title="Storybook_MainPage">
 
-    <ScrollView x:Name="scrollview">
+    <ScrollView x:Name="scrollview" BackgroundColor="Black">
         <VerticalStackLayout>
             <Grid x:Name="Page_1" SizeChanged="Page_1_SizeChanged">
                 <Image
