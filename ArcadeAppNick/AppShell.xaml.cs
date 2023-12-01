@@ -6,6 +6,8 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 
+        Routing.RegisterRoute("login", typeof(Login)); 
+
         Routing.RegisterRoute("arcade_main", typeof(MainPage)); 
 
 		Routing.RegisterRoute("quiz_home", typeof(Quiz_HomePage));
@@ -18,6 +20,8 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("platform_main", typeof(Platform_MainPage));
 
         Routing.RegisterRoute("clicker_home", typeof(Clicker_HomePage));
-        Routing.RegisterRoute("clicker_main", typeof(Clicker_MainPage)); 
+        Routing.RegisterRoute("clicker_main", typeof(Clicker_MainPage));
+
+        Routing.RegisterRoute("simulator", typeof(Simulator)); 
     }
 }

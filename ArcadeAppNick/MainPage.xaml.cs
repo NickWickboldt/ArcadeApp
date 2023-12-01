@@ -29,9 +29,9 @@ public partial class MainPage : ContentPage
         await Shell.Current.GoToAsync("clicker_home"); 
     }
 
-    private void ImageButton5_Clicked(object sender, EventArgs e)
+    private async void ImageButton5_Clicked(object sender, EventArgs e)
     {
-
+        await Shell.Current.GoToAsync("simulator"); 
     }
 
     private void ImageButton6_Clicked(object sender, EventArgs e)
