@@ -22,6 +22,8 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("clicker_home", typeof(Clicker_HomePage));
         Routing.RegisterRoute("clicker_main", typeof(Clicker_MainPage));
 
-        Routing.RegisterRoute("simulator", typeof(Simulator)); 
+        Routing.RegisterRoute("simulator", typeof(Simulator));
+
+        Routing.RegisterRoute("signup", typeof(Signup));
     }
 }
