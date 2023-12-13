@@ -49,6 +49,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\baby_goat.png" />
+	  <None Remove="Resources\Images\buffalo.png" />
 	  <None Remove="Resources\Images\clicker_background.jpeg" />
 	  <None Remove="Resources\Images\cloud_enemy.png" />
 	  <None Remove="Resources\Images\croc.jpg" />
@@ -58,7 +60,9 @@
 	  <None Remove="Resources\Images\grid_sound.mp3" />
 	  <None Remove="Resources\Images\homebackground.png" />
 	  <None Remove="Resources\Images\homepagebackground.jpg" />
+	  <None Remove="Resources\Images\hyena.png" />
 	  <None Remove="Resources\Images\jaguar.jpg" />
+	  <None Remove="Resources\Images\moose.png" />
 	  <None Remove="Resources\Images\mouse_pointer.png" />
 	  <None Remove="Resources\Images\page_1_img.png" />
 	  <None Remove="Resources\Images\page_2a_img.jpg" />
@@ -74,8 +78,12 @@
 	  <None Remove="Resources\Images\penguin.jpg" />
 	  <None Remove="Resources\Images\platform_background.webp" />
 	  <None Remove="Resources\Images\platform_splash.jpg" />
+	  <None Remove="Resources\Images\polar_bear.png" />
+	  <None Remove="Resources\Images\rat.png" />
+	  <None Remove="Resources\Images\seal.png" />
 	  <None Remove="Resources\Images\shrew.jpg" />
 	  <None Remove="Resources\Images\squid.jpg" />
+	  <None Remove="Resources\Images\tiger.png" />
 	  <None Remove="Resources\Images\wolf.jpg" />
 	  <None Remove="Resources\Images\zebra.jpg" />
 	  <None Remove="Resources\Raw\game_over.mp3" />

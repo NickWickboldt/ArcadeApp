@@ -16,33 +16,29 @@
                 HeightRequest="45"
                 AbsoluteLayout.LayoutFlags="XProportional"
                 AbsoluteLayout.LayoutBounds="0.5,50"/>
-            <StackLayout
+            <Image
                 x:Name="Card1"
-                BackgroundColor="Red"
                 WidthRequest="230"
                 HeightRequest="300"
                 ZIndex="-1"
                 AbsoluteLayout.LayoutFlags="XProportional"
                 AbsoluteLayout.LayoutBounds="0.5,55"/>
-            <StackLayout
+            <Image
                 x:Name="Card2"
-                BackgroundColor="Red"
                 WidthRequest="230"
                 HeightRequest="300"
                 ZIndex="-1"
                 AbsoluteLayout.LayoutFlags="XProportional"
                 AbsoluteLayout.LayoutBounds="0.5,55"/>
-            <StackLayout
+            <Image
                 x:Name="Card3"
-                BackgroundColor="Red"
                 WidthRequest="230"
                 HeightRequest="300"
                 ZIndex="-1"
                 AbsoluteLayout.LayoutFlags="XProportional"
                 AbsoluteLayout.LayoutBounds="0.5,55"/>
-            <StackLayout
+            <Image
                 x:Name="Card4"
-                BackgroundColor="Red"
                 WidthRequest="230"
                 HeightRequest="300"
                 ZIndex="-1"
