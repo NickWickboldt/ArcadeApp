@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.Inventory"
+             Title="Inventory">
+    <VerticalStackLayout>
+        <Label 
+            Text=""
+            x:Name="BabyGoatLabel"/>
+        <Label 
+            Text=""
+            x:Name="BuffaloLabel"/>
+        <Label 
+            Text=""
+            x:Name="HyenaLabel"/>
+        <Label 
+            Text=""
+            x:Name="MooseLabel"/>
+        <Label 
+            Text=""
+            x:Name="PolarBearLabel"/>
+        <Label 
+            Text=""
+            x:Name="RatLabel"/>
+        <Label 
+            Text=""
+            x:Name="SealLabel"/>
+        <Label 
+            Text=""
+            x:Name="TigerLabel"/>
+        <Label 
+            Text=""
+            x:Name="SharkLabel"/>
+        
+    </VerticalStackLayout>
+</ContentPage>

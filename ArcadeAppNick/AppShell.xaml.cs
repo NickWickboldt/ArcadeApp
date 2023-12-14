@@ -25,5 +25,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("simulator", typeof(Simulator));
 
         Routing.RegisterRoute("signup", typeof(Signup));
+
+        Routing.RegisterRoute("inventory", typeof(Inventory)); 
     }
 }

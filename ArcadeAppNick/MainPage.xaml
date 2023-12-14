@@ -212,6 +212,11 @@
                         />
                 </AbsoluteLayout>
             </Grid>
+            <Button 
+                Text="Inventory"
+                x:Name="InventoryButton"
+                Clicked="InventoryButton_Clicked"
+                />
         </AbsoluteLayout>
     </ScrollView>
 

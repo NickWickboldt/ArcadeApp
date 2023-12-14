@@ -58,5 +58,10 @@ public partial class MainPage : ContentPage
             App_Desc6.IsVisible = true;
         }
     }
+
+    async private void InventoryButton_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("inventory");
+    }
 }
 

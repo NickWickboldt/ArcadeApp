@@ -47,4 +47,27 @@ public class UserRepository
         //searches the databse for a entry with a matching username
         return conn.Table<Users>().Where(u => u.Username == username).FirstOrDefault();
     }
+
+    public void UpdateUserAnimalCard(string username, string animalname, int value)
+    {
+        Init();
+
+        if(username != null)
+        {
+            Users user = conn.Table<Users>().Where(u => u.Username == username).FirstOrDefault();
+        
+            if(user != null)
+            {
+                var column = typeof(Users).GetProperty(animalname);
+                if(column != null && column.PropertyType == typeof(int))
+                {
+                    //set new value
+                    column.SetValue(user, value);
+                    //update user data
+                    conn.Update(user);
+                }
+            }
+        
+        }
+    }
 }

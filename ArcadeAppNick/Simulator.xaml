@@ -65,6 +65,7 @@
             WidthRequest="300"
             Text="View Inventory"
             BackgroundColor="LightBlue"
-            BorderColor="DarkBlue"/>
+            BorderColor="DarkBlue"
+            Clicked="ViewInventoryButton_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

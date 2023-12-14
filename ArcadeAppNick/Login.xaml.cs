@@ -19,6 +19,7 @@ public partial class Login : ContentPage
             if(UsernameEntry.Text == result.Username && PasswordEntry.Text == result.Password)
             {
                 await Shell.Current.GoToAsync("arcade_main");
+                App.LoggedInUser = result.Username;
             }
         }
     }
