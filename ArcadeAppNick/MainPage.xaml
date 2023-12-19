@@ -181,7 +181,7 @@
                 </AbsoluteLayout>
                 <AbsoluteLayout Grid.Column="1" Grid.Row="2" HeightRequest="400" Padding="10">
                     <ImageButton 
-                        Source="dotnet_bot.png" 
+                        Source="legendary.webp" 
                         AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
                         AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
                         BackgroundColor="DarkOliveGreen"
@@ -189,14 +189,14 @@
                         Clicked="ImageButton6_Clicked"
                         />
                     <Label 
-                        Text="Quiz App"
+                        Text="Legendary Card Pack"
                         FontSize="30"
                         AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
                         AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
                         TextColor="GreenYellow"
                         />
                     <Label 
-                        Text="This is a quiz app! Answer all the question correctly to get the high score!"
+                        Text="Open legendary card packs and get rare cards!"
                         FontSize="20"
                         AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
                         AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"

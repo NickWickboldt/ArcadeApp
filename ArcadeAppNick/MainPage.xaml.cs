@@ -32,9 +32,9 @@ public partial class MainPage : ContentPage
         await Shell.Current.GoToAsync("simulator"); 
     }
 
-    private void ImageButton6_Clicked(object sender, EventArgs e)
+    async private void ImageButton6_Clicked(object sender, EventArgs e)
     {
-
+        await Shell.Current.GoToAsync("legendary");
     }
 
     private void AbsoluteLayout_SizeChanged(object sender, EventArgs e)

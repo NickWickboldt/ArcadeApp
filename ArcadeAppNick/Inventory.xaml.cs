@@ -18,7 +18,15 @@ public partial class Inventory : ContentPage
 		RatLabel.Text = Convert.ToString(user.Rat);
 		SealLabel.Text = Convert.ToString(user.Seal);
 		TigerLabel.Text = Convert.ToString(user.Tiger);
-		SharkLabel.Text = Convert.ToString(user.Shark); 
+		SharkLabel.Text = Convert.ToString(user.Shark);
+		BlueWhaleLabel.Text = Convert.ToString(user.BlueWhale);
+		VirusLabel.Text = Convert.ToString(user.Virus);
+		SeaSerpentLabel.Text = Convert.ToString(user.SeaSerpent);
+		PterodactylLabel.Text = Convert.ToString(user.Pterodactyl);
+		VampireBatLabel.Text = Convert.ToString(user.VampireBat);
+		KingCobraLabel.Text = Convert.ToString(user.KingCobra);
+		KingKongLabel.Text = Convert.ToString(user.KingKong); 
+		CentipedeLabel.Text = Convert.ToString(user.Centipede);
 	}
 
 }

@@ -77,7 +77,7 @@ public partial class Simulator : ContentPage
 		App.UserRepo.UpdateUserAnimalCard(App.LoggedInUser, column1, val1 + 1);
         App.UserRepo.UpdateUserAnimalCard(App.LoggedInUser, column2, val2 + 1);
         App.UserRepo.UpdateUserAnimalCard(App.LoggedInUser, column3, val3 + 1);
-        App.UserRepo.UpdateUserAnimalCard(App.LoggedInUser, column4, val4+ 1);
+        App.UserRepo.UpdateUserAnimalCard(App.LoggedInUser, column4, val4 + 1);
 
         Card1.Source = imageSource1;
 		Card2.Source = imageSource2;

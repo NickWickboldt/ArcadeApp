@@ -50,7 +50,9 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\baby_goat.png" />
+	  <None Remove="Resources\Images\blue_whale.png" />
 	  <None Remove="Resources\Images\buffalo.png" />
+	  <None Remove="Resources\Images\centipede.png" />
 	  <None Remove="Resources\Images\clicker_background.jpeg" />
 	  <None Remove="Resources\Images\cloud_enemy.png" />
 	  <None Remove="Resources\Images\croc.jpg" />
@@ -62,6 +64,9 @@
 	  <None Remove="Resources\Images\homepagebackground.jpg" />
 	  <None Remove="Resources\Images\hyena.png" />
 	  <None Remove="Resources\Images\jaguar.jpg" />
+	  <None Remove="Resources\Images\king_cobra.png" />
+	  <None Remove="Resources\Images\king_kong.png" />
+	  <None Remove="Resources\Images\legendary.webp" />
 	  <None Remove="Resources\Images\moose.png" />
 	  <None Remove="Resources\Images\mouse_pointer.png" />
 	  <None Remove="Resources\Images\page_1_img.png" />
@@ -79,12 +84,16 @@
 	  <None Remove="Resources\Images\platform_background.webp" />
 	  <None Remove="Resources\Images\platform_splash.jpg" />
 	  <None Remove="Resources\Images\polar_bear.png" />
+	  <None Remove="Resources\Images\pterodactyl.png" />
 	  <None Remove="Resources\Images\rat.png" />
 	  <None Remove="Resources\Images\seal.png" />
+	  <None Remove="Resources\Images\sea_serpent.png" />
 	  <None Remove="Resources\Images\shark.png" />
 	  <None Remove="Resources\Images\shrew.jpg" />
 	  <None Remove="Resources\Images\squid.jpg" />
 	  <None Remove="Resources\Images\tiger.png" />
+	  <None Remove="Resources\Images\vampire_bat.png" />
+	  <None Remove="Resources\Images\virus.png" />
 	  <None Remove="Resources\Images\wolf.jpg" />
 	  <None Remove="Resources\Images\zebra.jpg" />
 	  <None Remove="Resources\Raw\game_over.mp3" />
@@ -110,6 +119,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Inventory.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Legendary.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Login.xaml">
