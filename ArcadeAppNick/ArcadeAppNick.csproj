@@ -94,6 +94,8 @@
 	  <None Remove="Resources\Images\tiger.png" />
 	  <None Remove="Resources\Images\vampire_bat.png" />
 	  <None Remove="Resources\Images\virus.png" />
+	  <None Remove="Resources\Images\weather.webp" />
+	  <None Remove="Resources\Images\weather_icon.jpg" />
 	  <None Remove="Resources\Images\wolf.jpg" />
 	  <None Remove="Resources\Images\zebra.jpg" />
 	  <None Remove="Resources\Raw\game_over.mp3" />
@@ -105,6 +107,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
@@ -149,6 +152,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Storybook_MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Weather.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

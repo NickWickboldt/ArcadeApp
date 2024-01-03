@@ -4,12 +4,13 @@
              x:Class="ArcadeAppNick.MainPage">
 
     <ScrollView>
-        <AbsoluteLayout BackgroundColor="Black" HeightRequest="1200" SizeChanged="AbsoluteLayout_SizeChanged">
+        <AbsoluteLayout BackgroundColor="Black" HeightRequest="1600" SizeChanged="AbsoluteLayout_SizeChanged">
             <Grid 
                 AbsoluteLayout.LayoutBounds="0,0, 1.0,1.0"
                 AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
                 >
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -202,6 +203,38 @@
                         AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
                         TextColor="GreenYellow"
                         x:Name="App_Desc6"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="3" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="weather.webp" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton7"
+                        Clicked="ImageButton7_Clicked"
+                        />
+                    <Label 
+                        Text="Weather App"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Check the weather anywhere!"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc7"
                         />
                     <Label 
                         Text="Rating: 10/10"

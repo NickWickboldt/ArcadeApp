@@ -31,6 +31,11 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync("simulator"); 
     }
+    
+    private async void ImageButton7_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("weather"); 
+    }
 
     async private void ImageButton6_Clicked(object sender, EventArgs e)
     {
@@ -47,6 +52,7 @@ public partial class MainPage : ContentPage
             App_Desc4.IsVisible = false;
             App_Desc5.IsVisible = false;
             App_Desc6.IsVisible = false;
+            App_Desc7.IsVisible = false; 
         }
         else
         {
@@ -56,6 +62,7 @@ public partial class MainPage : ContentPage
             App_Desc4.IsVisible = true;
             App_Desc5.IsVisible = true;
             App_Desc6.IsVisible = true;
+            App_Desc7.IsVisible = true;
         }
     }
 
@@ -63,5 +70,7 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync("inventory");
     }
+
+    
 }
 

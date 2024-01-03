@@ -28,6 +28,8 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute("inventory", typeof(Inventory));
 
-        Routing.RegisterRoute("legendary", typeof(Legendary)); 
+        Routing.RegisterRoute("legendary", typeof(Legendary));
+
+        Routing.RegisterRoute("weather", typeof(Weather)); 
     }
 }

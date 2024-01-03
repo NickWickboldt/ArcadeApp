@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.Weather"
+             xmlns:vm="clr-namespace:ArcadeAppNick.Models"
+             x:DataType="vm:WeatherInfo"
+             Title="Weather">
+    <AbsoluteLayout BackgroundColor="#01BFFF">
+        <Label 
+            Text="Weather"
+            FontSize="60"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5,0.025"/>
+        <Entry 
+            Placeholder="City"
+            BackgroundColor="#F1F1F1"
+            Text="{Binding City}"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.5,0.2,0.4,0.05"/>
+        <Entry 
+            Placeholder="State/Country"
+            BackgroundColor="#F1F1F1"
+            Text="{Binding State_country}"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.5,0.3, 0.4, 0.05"/>
+        <Button 
+            Text="Fetch"
+            TextColor="Black"
+            FontSize="Large"
+            Command="{Binding FetchWeatherInformationCommand}"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.5,0.45,0.3,0.1"/>
+        <Image 
+            Source="{Binding Weather_icon}"
+            BackgroundColor="DarkGrey"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.5,0.75,0.2,0.2"/>
+        <Label 
+            Text="{Binding Temperature}"
+            FontSize="60"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5,0.95"/>
+    </AbsoluteLayout>
+</ContentPage>
