@@ -10,4 +10,10 @@ public partial class Weather : ContentPage
 		InitializeComponent();
         BindingContext = new WeatherInfo();
     }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        WindImage.Source = "wind.jpg";
+        RainImage.Source = "rain.jpg"; 
+    }
 }

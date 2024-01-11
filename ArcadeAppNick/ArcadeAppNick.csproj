@@ -85,6 +85,7 @@
 	  <None Remove="Resources\Images\platform_splash.jpg" />
 	  <None Remove="Resources\Images\polar_bear.png" />
 	  <None Remove="Resources\Images\pterodactyl.png" />
+	  <None Remove="Resources\Images\rain.jpg" />
 	  <None Remove="Resources\Images\rat.png" />
 	  <None Remove="Resources\Images\seal.png" />
 	  <None Remove="Resources\Images\sea_serpent.png" />
@@ -96,6 +97,7 @@
 	  <None Remove="Resources\Images\virus.png" />
 	  <None Remove="Resources\Images\weather.webp" />
 	  <None Remove="Resources\Images\weather_icon.jpg" />
+	  <None Remove="Resources\Images\wind.jpg" />
 	  <None Remove="Resources\Images\wolf.jpg" />
 	  <None Remove="Resources\Images\zebra.jpg" />
 	  <None Remove="Resources\Raw\game_over.mp3" />
