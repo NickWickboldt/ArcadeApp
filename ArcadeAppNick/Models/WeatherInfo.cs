@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using ArcadeAppNick.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,13 @@ namespace ArcadeAppNick.Models;
 
 internal partial class WeatherInfo : ObservableObject
 {
+    private readonly WeatherApiService weatherApiService;
+
+    public WeatherInfo()
+    {
+        weatherApiService = new WeatherApiService(); 
+    }
+
     [ObservableProperty]
     private string city;
 
@@ -25,6 +33,11 @@ internal partial class WeatherInfo : ObservableObject
     [RelayCommand]
     private async Task FetchWeatherInformation()
     {
-
+        var weatherApiResponse = await weatherApiService.GetWeatherInformation(City); 
+        if(weatherApiResponse.Current != null)
+        {
+            Weather_icon = weatherApiResponse.Current.weather_icons[0];
+            Temperature = $"{weatherApiResponse.Current.temperature}°C"; 
+        }
     }
 }
