@@ -244,6 +244,38 @@
                         TextColor="GreenYellow"
                         />
                 </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="3" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="tictactoe.png" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton8"
+                        Clicked="ImageButton8_Clicked"
+                        />
+                    <Label 
+                        Text="TicTacToe App"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Can you beat an AI?"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc8"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
             </Grid>
             <Button 
                 Text="Inventory"

@@ -30,6 +30,8 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute("legendary", typeof(Legendary));
 
-        Routing.RegisterRoute("weather", typeof(Weather)); 
+        Routing.RegisterRoute("weather", typeof(Weather));
+
+        Routing.RegisterRoute("tictactoe", typeof(TicTacToe));
     }
 }
