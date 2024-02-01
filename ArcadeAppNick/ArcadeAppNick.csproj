@@ -50,9 +50,11 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\baby_goat.png" />
+	  <None Remove="Resources\Images\black_piece.png" />
 	  <None Remove="Resources\Images\blue_whale.png" />
 	  <None Remove="Resources\Images\buffalo.png" />
 	  <None Remove="Resources\Images\centipede.png" />
+	  <None Remove="Resources\Images\checkers_thumbnail.webp" />
 	  <None Remove="Resources\Images\clicker_background.jpeg" />
 	  <None Remove="Resources\Images\cloud_enemy.png" />
 	  <None Remove="Resources\Images\croc.jpg" />
@@ -87,6 +89,7 @@
 	  <None Remove="Resources\Images\pterodactyl.png" />
 	  <None Remove="Resources\Images\rain.jpg" />
 	  <None Remove="Resources\Images\rat.png" />
+	  <None Remove="Resources\Images\red_piece.png" />
 	  <None Remove="Resources\Images\seal.png" />
 	  <None Remove="Resources\Images\sea_serpent.png" />
 	  <None Remove="Resources\Images\shark.png" />
@@ -117,6 +120,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Checkers.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Clicker_HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

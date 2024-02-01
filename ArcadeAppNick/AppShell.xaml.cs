@@ -33,5 +33,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("weather", typeof(Weather));
 
         Routing.RegisterRoute("tictactoe", typeof(TicTacToe));
+
+        Routing.RegisterRoute("checkers", typeof(Checkers)); 
     }
 }

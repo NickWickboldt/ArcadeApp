@@ -4,12 +4,13 @@
              x:Class="ArcadeAppNick.MainPage">
 
     <ScrollView>
-        <AbsoluteLayout BackgroundColor="Black" HeightRequest="1600" SizeChanged="AbsoluteLayout_SizeChanged">
+        <AbsoluteLayout BackgroundColor="Black" HeightRequest="2000" SizeChanged="AbsoluteLayout_SizeChanged">
             <Grid 
                 AbsoluteLayout.LayoutBounds="0,0, 1.0,1.0"
                 AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
                 >
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -267,6 +268,38 @@
                         AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
                         TextColor="GreenYellow"
                         x:Name="App_Desc8"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="4" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="checkers_thumbnail.webp" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton9"
+                        Clicked="ImageButton9_Clicked"
+                        />
+                    <Label 
+                        Text="Checkers App"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Play checkers against an AI!"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc9"
                         />
                     <Label 
                         Text="Rating: 10/10"
