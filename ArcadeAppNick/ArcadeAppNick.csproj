@@ -90,6 +90,7 @@
 	  <None Remove="Resources\Images\rain.jpg" />
 	  <None Remove="Resources\Images\rat.png" />
 	  <None Remove="Resources\Images\red_piece.png" />
+	  <None Remove="Resources\Images\red_piece_active.png" />
 	  <None Remove="Resources\Images\seal.png" />
 	  <None Remove="Resources\Images\sea_serpent.png" />
 	  <None Remove="Resources\Images\shark.png" />
