@@ -10,8 +10,8 @@
             x:Name="Gameboard"
             AbsoluteLayout.LayoutFlags="PositionProportional"
             AbsoluteLayout.LayoutBounds="0.5,0.5"
-            WidthRequest="700"
-            HeightRequest="700">
+            WidthRequest="600"
+            HeightRequest="600">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -33,5 +33,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         </Grid>
+        <Label
+    Text=""
+    TextColor="Black"
+    x:Name="Tester"
+    AbsoluteLayout.LayoutFlags="PositionProportional"
+    AbsoluteLayout.LayoutBounds="0.0,1.0"/>
     </AbsoluteLayout>
 </ContentPage>
