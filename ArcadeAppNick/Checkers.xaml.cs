@@ -1,5 +1,3 @@
-using static System.Net.Mime.MediaTypeNames;
-
 namespace ArcadeAppNick;
 
 public partial class Checkers : ContentPage
@@ -9,6 +7,7 @@ public partial class Checkers : ContentPage
     public List<Checker> AIPieces = new List<Checker>();
     public List<Checker> UserPieces = new List<Checker>();
     public bool checkerIsSelected = false;
+    public List<AIMove> PriorityMoves = new List<AIMove>();
     //class constructor
     public Checkers()
     {
@@ -130,6 +129,51 @@ public partial class Checkers : ContentPage
             return;
         }
     }
+
+    public void EndOfUserTurn(CheckerboardSquare movedTo)
+    {
+        movedTo.isActive = true; //square now has a checker
+
+        foreach (CheckerboardSquare bs in CheckerBoard)
+        {
+            if (bs.choosingForMove)
+            {
+                int[] fromLocation = bs.location;
+                foreach (Checker piece in UserPieces)
+                {
+                    if (piece.currentLocation[0] == fromLocation[0] && piece.currentLocation[1] == fromLocation[1])
+                    {
+                        piece.currentLocation[0] = movedTo.location[0];
+                        piece.currentLocation[1] = movedTo.location[1];
+                    }
+                }
+                bs.square.Source = null;
+                bs.isActive = false;
+                bs.choosingForMove = false;
+            }
+            //.NET 8 -> if(bs.square.BorderWidth == 5)
+            if(Convert.ToString(bs.square.BackgroundColor) == Convert.ToString(Color.FromRgb(255, 223, 0)))
+            {
+                DeHighlightSquares(new List<int[]>() { bs.location }); 
+            }
+        }
+        foreach (CheckerboardSquare bs in CheckerBoard)
+        {
+            bs.RemoveEvents();
+            bs.TestActive(); 
+        }
+    }
+
+    public void AITurn()
+    {
+        List<List<int[]>> AIMoves = new List<List<int[]>>(); //list of lists of locations
+
+        foreach (Checker piece in AIPieces)
+        {
+            List<int[]> moves = piece.GetPossibleMoves("ai", this); //calculate valid moves
+            AIMoves.Add(moves);
+        }
+    }
 }
 public class Checker
 {
@@ -164,9 +208,25 @@ public class Checker
                 moves.Add(move2);
             }
         }
-        else
+        else if(player == "ai")
         {
-            //AI
+            int[] move1 = new int[2] { currentLocation[0] - 1, currentLocation[1] + 1 }; //down-left move
+            int[] move2 = new int[2] { currentLocation[0] + 1, currentLocation[1] + 1 }; //down-right move
+
+            CheckerboardSquare sq1 = p.IdentifyCheckerBoardSquare(move1);
+            CheckerboardSquare sq2 = p.IdentifyCheckerBoardSquare(move2);
+
+            move1 = GetActualAIMove(move1, sq1, "move1", p);
+            move2 = GetActualAIMove(move2, sq2, "move2", p);
+
+            if (move1 != null)
+            {
+                moves.Add(move1);
+            }
+            if (move2 != null)
+            {
+                moves.Add(move2);
+            }
         }
         return moves; 
     }
@@ -223,6 +283,59 @@ public class Checker
             }
         }
         return move; 
+    }
+
+    public int[] GetActualAIMove(int[] move, CheckerboardSquare sq, string moveID, Checkers p)
+    {
+        if (moveID == "move1")
+        {
+            if (move[0] >= 0 && move[1] <= 7 && sq != null)
+            {
+                if (sq.isActive == true) //check if square is ocupied
+                {
+                    if (Convert.ToString(sq.square.Source).Substring(6) != "black_piece.png")
+                    {
+                        move = new int[2] { move[0] - 1, move[1] + 1 };
+                        sq = p.IdentifyCheckerBoardSquare(move);
+                        move = GetActualAIMove(move, sq, moveID, p); //recursively recheck possible hop move
+                    }
+                    else
+                    {
+                        move = null; //cannot move over black piece
+                    }
+
+                }
+            }
+            else
+            {
+                move = null; //cannot move outside of board
+            }
+        }
+        else if (moveID == "move2")
+        {
+            if (move[0] <= 7 && move[1] <= 7 && sq != null)
+            {
+                if (sq.isActive == true) //check if square is ocupied
+                {
+                    if (Convert.ToString(sq.square.Source).Substring(6) != "black_piece.png")
+                    {
+                        move = new int[2] { move[0] + 1, move[1] + 1 };
+                        sq = p.IdentifyCheckerBoardSquare(move);
+                        move = GetActualAIMove(move, sq, moveID, p); //recursively recheck possible hop move
+                    }
+                    else
+                    {
+                        move = null; //cannot move over black piece
+                    }
+
+                }
+            }
+            else
+            {
+                move = null; //cannot move outside of board
+            }
+        }
+        return move;
     }
 }
 
@@ -318,8 +431,31 @@ public class CheckerboardSquare
                 currentState = 0;
                 choosingForMove = false;
                 p.checkerIsSelected = false;
+                p.EndOfUserTurn(this); 
             }
         };
         square.Clicked += DoMove; 
+    }
+
+    public void RemoveEvents()
+    {
+        square.Clicked -= DoToggle; // Remove current toggle
+        square.Clicked -= DoMove;
+    }
+}
+
+public class AIMove
+{
+    public int[] fromLocation = new int[2];
+    public int[] toLocation = new int[2];
+    public int priority;
+    public Checker piece;
+
+    public AIMove(int p, int[] f, int[] t, Checker pe)
+    {
+        priority = p;
+        fromLocation = f;
+        toLocation = t;
+        piece = pe;
     }
 }
