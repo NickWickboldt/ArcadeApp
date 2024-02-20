@@ -33,11 +33,20 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         </Grid>
+        <Button
+            Text="Forfeit"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.5, 1.0, 0.3, 0.05"
+            BackgroundColor="DarkRed"
+            TextColor="White"
+            x:Name="Forfeit_Button"
+            Clicked="Forfeit_Button_Clicked"/>
         <Label
-    Text=""
-    TextColor="Black"
-    x:Name="Tester"
-    AbsoluteLayout.LayoutFlags="PositionProportional"
-    AbsoluteLayout.LayoutBounds="0.0,1.0"/>
+            IsVisible="false"
+            Text=""
+            TextColor="Black"
+            x:Name="GameOver"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5,1.0"/>
     </AbsoluteLayout>
 </ContentPage>

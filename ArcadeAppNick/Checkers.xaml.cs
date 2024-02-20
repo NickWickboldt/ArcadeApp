@@ -85,6 +85,14 @@ public partial class Checkers : ContentPage
                 return piece;
             }
         }
+        foreach (Checker piece in AIPieces)
+        {
+            if (piece.currentLocation[0] == location[0] && piece.currentLocation[1] == location[1])
+            {
+                return piece;
+            }
+
+        }
         return null; 
     }
 
@@ -139,6 +147,8 @@ public partial class Checkers : ContentPage
             if (bs.choosingForMove)
             {
                 int[] fromLocation = bs.location;
+                //check for elimination
+                CheckForCheckerElimination("user", fromLocation, movedTo.location);
                 foreach (Checker piece in UserPieces)
                 {
                     if (piece.currentLocation[0] == fromLocation[0] && piece.currentLocation[1] == fromLocation[1])
@@ -160,18 +170,150 @@ public partial class Checkers : ContentPage
         foreach (CheckerboardSquare bs in CheckerBoard)
         {
             bs.RemoveEvents();
-            bs.TestActive(); 
+            //bs.TestActive(); 
         }
+        AITurn(); 
     }
 
     public void AITurn()
     {
+        if (AIPieces.Count == 0)
+        {
+            UserWin();
+            return;
+        }
         List<List<int[]>> AIMoves = new List<List<int[]>>(); //list of lists of locations
 
         foreach (Checker piece in AIPieces)
         {
             List<int[]> moves = piece.GetPossibleMoves("ai", this); //calculate valid moves
             AIMoves.Add(moves);
+
+            foreach (int[] location in moves)
+            {
+                if (location[1] - piece.currentLocation[1] > 1) //if move is larger than 1 square (jump)
+                {
+                    AIMove move = new AIMove(1, piece.currentLocation, location, piece);
+                    PriorityMoves.Add(move);
+                }
+                else
+                {
+                    AIMove move = new AIMove(0, piece.currentLocation, location, piece);
+                    PriorityMoves.Add(move);
+                }
+            }
+        }
+
+        if(PriorityMoves.Count > 0)
+        {
+            AIMove chosenMove = ChooseAIMove();
+            CheckerboardSquare fromSquare = IdentifyCheckerBoardSquare(chosenMove.fromLocation);
+            CheckerboardSquare toSquare = IdentifyCheckerBoardSquare(chosenMove.toLocation);
+
+            chosenMove.piece.currentLocation = chosenMove.toLocation; //update checker currentLocation
+
+            fromSquare.square.Source = null;
+            toSquare.square.Source = "black_piece.png";
+            toSquare.choosingForMove = false;
+
+            //check for elimination
+            CheckForCheckerElimination("ai", chosenMove.fromLocation, chosenMove.toLocation);
+
+            foreach (CheckerboardSquare bs in CheckerBoard) //check each square for a piece
+            {
+                bs.TestActive();
+            }
+            PriorityMoves.Clear();
+        }
+        else
+        {
+            UserWin(); 
+        }
+    }
+    
+    public AIMove ChooseAIMove()
+    {
+        foreach (AIMove move in PriorityMoves)
+        {
+            if (move.priority == 1) //first choose move with priority
+            {
+                return move;
+            }
+        }
+        var rand = new Random();
+        int randMove = rand.Next(0, PriorityMoves.Count);
+        return PriorityMoves[randMove]; //otherwise choosen random move
+    }
+
+    public void CheckForCheckerElimination(string playerID, int[] from, int[] to)
+    {
+        int[] checkerToEliminate = new int[2] { -1, -1 }; 
+
+        if(playerID == "user")
+        {
+            if (from[1] - to[1] > 1) // if has moved 2 rows up
+            {
+                if (to[0] > from[0]) //if column has increased (right move)
+                {
+                    checkerToEliminate[0] = to[0] - 1;
+                }
+                else //column has decreased (left move)
+                {
+                    checkerToEliminate[0] = from[0] - 1;
+                }
+                checkerToEliminate[1] = to[1] + 1;
+                if (AIPieces.Contains(IdentifyChecker(checkerToEliminate)))
+                {
+                    AIPieces.Remove(IdentifyChecker(checkerToEliminate)); 
+                }
+            }
+        }
+        else if(playerID == "ai")
+        {
+            if (to[1] - from[1] > 1) // if has moved 2 rows down
+            {
+                if (to[0] > from[0]) //if column has increased (right move)
+                {
+                    checkerToEliminate[0] = to[0] - 1;
+                }
+                else //column has decreased (left move)
+                {
+                    checkerToEliminate[0] = from[0] - 1;
+                }
+                checkerToEliminate[1] = to[1] - 1;
+                if (UserPieces.Contains(IdentifyChecker(checkerToEliminate)))
+                {
+                    UserPieces.Remove(IdentifyChecker(checkerToEliminate));
+                }
+            }
+        }
+        if(checkerToEliminate[0] != -1 && checkerToEliminate[1] != -1)
+        {
+            IdentifyCheckerBoardSquare(checkerToEliminate).square.Source = null;
+            IdentifyCheckerBoardSquare(checkerToEliminate).isActive = false;
+            IdentifyCheckerBoardSquare(checkerToEliminate).choosingForMove = false; 
+        }
+    }
+
+    private void Forfeit_Button_Clicked(object sender, EventArgs e)
+    {
+        Forfeit_Button.IsVisible = false;
+        GameOver.Text = "AI has won. You have lost.";
+        GameOver.IsVisible = true;
+        foreach (CheckerboardSquare sq in CheckerBoard)
+        {
+            sq.square.IsEnabled = false;
+        }
+    }
+
+    public void UserWin()
+    {
+        Forfeit_Button.IsVisible = false;
+        GameOver.Text = "You have won!";
+        GameOver.IsVisible = true;
+        foreach (CheckerboardSquare sq in CheckerBoard)
+        {
+            sq.square.IsEnabled = false;
         }
     }
 }
@@ -231,7 +373,7 @@ public class Checker
         return moves; 
     }
 
-    public int[] GetActualUserMoves(int[] move, CheckerboardSquare sq, string moveID, Checkers p)
+    public int[] GetActualUserMoves(int[] move, CheckerboardSquare sq, string moveID, Checkers p, int moveIndex = 0)
     {
         if(moveID == "move1")
         {
@@ -239,12 +381,12 @@ public class Checker
             {
                 if(sq.isActive == true) //check if square is ocupied
                 {
-                    if(Convert.ToString(sq.square.Source).Substring(6) != "red_piece.png")
+                    if(Convert.ToString(sq.square.Source).Substring(6) != "red_piece.png" && moveIndex == 0)
                     {
-                        move[0] = (move[0] + 1);
+                        move[0] = (move[0] - 1);
                         move[1] = (move[1] - 1); 
                         sq = p.IdentifyCheckerBoardSquare(move); //identify new square
-                        move = GetActualUserMoves(move, sq, moveID, p); //recursively recheck possible jump move
+                        move = GetActualUserMoves(move, sq, moveID, p, moveIndex + 1); //recursively recheck possible jump move
                     }
                     else
                     {
@@ -263,12 +405,12 @@ public class Checker
             {
                 if (sq.isActive == true) //check if square is ocupied
                 {
-                    if (Convert.ToString(sq.square.Source).Substring(6) != "red_piece.png")
+                    if (Convert.ToString(sq.square.Source).Substring(6) != "red_piece.png" && moveIndex == 0)
                     {
                         move[0] = (move[0] + 1);
                         move[1] = (move[1] - 1);
                         sq = p.IdentifyCheckerBoardSquare(move);
-                        move = GetActualUserMoves(move, sq, moveID, p); //recursively recheck possible hop move
+                        move = GetActualUserMoves(move, sq, moveID, p, moveIndex + 1); //recursively recheck possible hop move
                     }
                     else
                     {
@@ -285,7 +427,7 @@ public class Checker
         return move; 
     }
 
-    public int[] GetActualAIMove(int[] move, CheckerboardSquare sq, string moveID, Checkers p)
+    public int[] GetActualAIMove(int[] move, CheckerboardSquare sq, string moveID, Checkers p, int moveIndex = 0)
     {
         if (moveID == "move1")
         {
@@ -293,11 +435,11 @@ public class Checker
             {
                 if (sq.isActive == true) //check if square is ocupied
                 {
-                    if (Convert.ToString(sq.square.Source).Substring(6) != "black_piece.png")
+                    if (Convert.ToString(sq.square.Source).Substring(6) != "black_piece.png" && moveIndex == 0)
                     {
                         move = new int[2] { move[0] - 1, move[1] + 1 };
                         sq = p.IdentifyCheckerBoardSquare(move);
-                        move = GetActualAIMove(move, sq, moveID, p); //recursively recheck possible hop move
+                        move = GetActualAIMove(move, sq, moveID, p, moveIndex + 1); //recursively recheck possible hop move
                     }
                     else
                     {
@@ -317,11 +459,11 @@ public class Checker
             {
                 if (sq.isActive == true) //check if square is ocupied
                 {
-                    if (Convert.ToString(sq.square.Source).Substring(6) != "black_piece.png")
+                    if (Convert.ToString(sq.square.Source).Substring(6) != "black_piece.png" && moveIndex == 0)
                     {
                         move = new int[2] { move[0] + 1, move[1] + 1 };
                         sq = p.IdentifyCheckerBoardSquare(move);
-                        move = GetActualAIMove(move, sq, moveID, p); //recursively recheck possible hop move
+                        move = GetActualAIMove(move, sq, moveID, p, moveIndex + 1); //recursively recheck possible hop move
                     }
                     else
                     {
