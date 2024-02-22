@@ -29,6 +29,8 @@ public class Users
     public int Seal { get; set; }
     public int Tiger {  get; set; }
     public int Shark { get; set; }
+    public int Fox { get; set; }
+    public int Zebra { get; set; }
 
     //legendary cards
     public int BlueWhale { get; set; }

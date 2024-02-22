@@ -52,6 +52,11 @@ public partial class MainPage : ContentPage
         await Shell.Current.GoToAsync("checkers"); 
     }
 
+    async private void ImageButton10_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("zoo"); 
+    }
+
     private void AbsoluteLayout_SizeChanged(object sender, EventArgs e)
     {
         if(Width < 700)
@@ -64,7 +69,8 @@ public partial class MainPage : ContentPage
             App_Desc6.IsVisible = false;
             App_Desc7.IsVisible = false; 
             App_Desc8.IsVisible = false;
-            App_Desc9.IsVisible = false; 
+            App_Desc9.IsVisible = false;
+            App_Desc10.IsVisible = false; 
         }
         else
         {
@@ -76,7 +82,8 @@ public partial class MainPage : ContentPage
             App_Desc6.IsVisible = true;
             App_Desc7.IsVisible = true;
             App_Desc8.IsVisible = true;
-            App_Desc9.IsVisible = true; 
+            App_Desc9.IsVisible = true;
+            App_Desc10.IsVisible = true; 
         }
     }
 
@@ -84,6 +91,5 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync("inventory");
     }
-
 }
 

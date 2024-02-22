@@ -89,7 +89,7 @@
                     Padding="5"
                     HorizontalOptions="Center"/>
                 <Image 
-                    Source="zebra.jpg"
+                    Source="zebra_quiz.jpg"
                     MaximumWidthRequest="500"
                     MaximumHeightRequest="250"/>
                 <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="150" ColumnSpacing="20" Padding="20" RowSpacing="15">

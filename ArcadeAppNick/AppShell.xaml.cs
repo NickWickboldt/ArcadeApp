@@ -34,6 +34,8 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute("tictactoe", typeof(TicTacToe));
 
-        Routing.RegisterRoute("checkers", typeof(Checkers)); 
+        Routing.RegisterRoute("checkers", typeof(Checkers));
+
+        Routing.RegisterRoute("zoo", typeof(Zoo)); 
     }
 }

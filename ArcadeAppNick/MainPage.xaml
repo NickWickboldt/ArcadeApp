@@ -309,6 +309,38 @@
                         TextColor="GreenYellow"
                         />
                 </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="4" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="zoo_rumble_thumbnail.jpg" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton10"
+                        Clicked="ImageButton10_Clicked"
+                        />
+                    <Label 
+                        Text="Zoo Rumble"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="An animal based trading card game!"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc10"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
             </Grid>
             <Button 
                 Text="Inventory"

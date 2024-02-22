@@ -14,7 +14,9 @@ public partial class Simulator : ContentPage
 		"rat.png",
 		"seal.png",
 		"tiger.png",
-		"shark.png"
+		"shark.png", 
+		"fox.jpg", 
+		"zebra.jpg"
 	};
 
 	List<String> columns = new List<String>()
@@ -27,7 +29,9 @@ public partial class Simulator : ContentPage
 		"Rat",
 		"Seal",
 		"Tiger",
-		"Shark"
+		"Shark", 
+		"Fox", 
+		"Zebra"
 	};
 
 
@@ -39,16 +43,16 @@ public partial class Simulator : ContentPage
     async private void OpenPackButton_Clicked(object sender, EventArgs e)
     {
         var rand = new Random();
-        int rand1 = rand.Next(9);
+        int rand1 = rand.Next(11);
 
 		rand = new Random(); 
-		int rand2 = rand.Next(9);
+		int rand2 = rand.Next(11);
 
 		rand = new Random(); 
-		int rand3 = rand.Next(9);
+		int rand3 = rand.Next(11);
 
 		rand = new Random();
-		int rand4 = rand.Next(9);
+		int rand4 = rand.Next(11);
 
 		string imageSource1 = cards[rand1];
 		string column1 = columns[rand1];
