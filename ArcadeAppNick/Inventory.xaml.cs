@@ -28,7 +28,9 @@ public partial class Inventory : ContentPage
 		KingKongLabel.Text = Convert.ToString(user.KingKong); 
 		CentipedeLabel.Text = Convert.ToString(user.Centipede);
 		FoxLabel.Text = Convert.ToString(user.Fox);
-		ZebraLabel.Text = Convert.ToString(user.Zebra); 
+		ZebraLabel.Text = Convert.ToString(user.Zebra);
+		WolfPackLabel.Text = Convert.ToString(user.WolfPack);
+		HorseLabel.Text = Convert.ToString(user.Horse); 
 	}
 
 }

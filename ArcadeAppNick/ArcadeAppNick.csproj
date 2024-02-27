@@ -65,6 +65,7 @@
 	  <None Remove="Resources\Images\grid_sound.mp3" />
 	  <None Remove="Resources\Images\homebackground.png" />
 	  <None Remove="Resources\Images\homepagebackground.jpg" />
+	  <None Remove="Resources\Images\horse.png" />
 	  <None Remove="Resources\Images\hyena.png" />
 	  <None Remove="Resources\Images\jaguar.jpg" />
 	  <None Remove="Resources\Images\king_cobra.png" />
@@ -104,6 +105,7 @@
 	  <None Remove="Resources\Images\weather_icon.jpg" />
 	  <None Remove="Resources\Images\wind.jpg" />
 	  <None Remove="Resources\Images\wolf.jpg" />
+	  <None Remove="Resources\Images\wolf_pack.png" />
 	  <None Remove="Resources\Images\zebra.jpg" />
 	  <None Remove="Resources\Images\zebra_quiz.jpg" />
 	  <None Remove="Resources\Images\zoo_rumble_thumbnail.jpg" />
