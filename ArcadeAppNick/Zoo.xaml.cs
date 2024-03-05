@@ -4,13 +4,16 @@ namespace ArcadeAppNick;
 
 public partial class Zoo : ContentPage
 {
+	public List<CardBoardSquare> CardBoard = new List<CardBoardSquare>(); 
 	public List<Card> PlayerDeck = new List<Card>();
 	public List<Card> PlayerHand = new List<Card>();
 	public List<Card> PlayerField = new List<Card>();
 
 	public List<Card> AIDeck = new List<Card>();
 	public List<Card> AIHand = new List<Card>();
-	public List<Card> AIField = new List<Card>(); 
+	public List<Card> AIField = new List<Card>();
+
+	public bool cardIsSelected = false; 
 
 	List<String> commonList = new List<String>()
 	{
@@ -126,7 +129,8 @@ public partial class Zoo : ContentPage
 					PlayerDeck.RemoveAt(i); 
 				}
 
-				Gameboard.Add(sq, i, j); 
+				Gameboard.Add(sq, i, j);
+				CardBoard.Add(new CardBoardSquare(this, sq, i, j)); 
 			}
 		}
 	}
@@ -238,6 +242,108 @@ public class CardBoardSquare
 		p = page;
 		location[0] = i;
 		location[1] = j;
-		square = sq; 
+		square = sq;
+		ToggleCard(); 
+	}
+
+	public void ToggleCard()
+	{
+		if (Convert.ToString(square.Source).Length > 3) //if there is a card
+		{
+			isActive = true;
+			if (IsUserCard())
+			{
+				DoToggle = (sender, args) =>
+				{
+					Card currentCard = p.IdentifyCard(location); //get current Card
+					if (currentState == 0 && (p.cardIsSelected == false))
+					{
+						square.Scale = 1.1;
+						currentState = 1;
+						p.cardIsSelected = true;
+						//check for attack or move validity
+						CheckMoveOrAttack(currentCard); 
+					}
+					else if (chosenForAttack || chosenForMove)
+					{
+						chosenForMove = false;
+						chosenForAttack = false; 
+						currentState = 0;
+						p.cardIsSelected = false;
+						square.Scale = 1; 
+					}
+				};
+				square.Clicked += DoToggle; 
+			}
+		}
+		else
+		{
+			//there is no card (square is empty)
+			if (location[1] == 2)
+			{
+				//user can move here
+			}
+			if (location[1] == 1)
+			{
+				//user can attack here
+			}
+		}
+	}
+
+	public bool IsUserCard()
+	{
+		if (location[1] == 2 || location[1] == 3)
+		{
+			return true; 
+		}
+		return false; 
+	}
+
+	public void CheckMoveOrAttack(Card card)
+	{
+		if (card.currentLocation[1] == 3) //if card is in user's hand
+		{
+			chosenForMove = true; 
+		}
+		else //else is in user's field
+		{
+			chosenForAttack = true;
+		}
+	}
+
+	public void EmptySquare()
+	{
+        DoMove = (sender, args) =>
+        {
+            if (Convert.ToString(square.BackgroundColor) == Convert.ToString(Color.FromRgb(255, 255, 255))
+                || Convert.ToString(square.Source).Length == 0)
+            {
+                currentState = 0;
+                chosenForMove = false;
+                p.cardIsSelected = false;
+                square.BackgroundColor = Color.FromRgb(0, 0, 0);//black
+            }
+        };
+        square.Clicked += DoMove;
+    }
+
+	public void EnemySquare()
+	{
+        CanAttack = (sender, args) =>
+        {
+            if (Convert.ToString(square.Source).Length > 1)
+            {
+                currentState = 0;
+                chosenForAttack = false;
+                p.cardIsSelected = false;
+            }
+        };
+        square.Clicked += CanAttack;
+    }
+
+	public void RemoveEvents()
+	{
+		square.Clicked -= DoToggle;
+		square.Clicked -= DoMove; 
 	}
 }
