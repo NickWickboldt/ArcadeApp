@@ -209,6 +209,115 @@ public partial class Zoo : ContentPage
         }
         return null; 
 	}
+
+	public void PlayerMoveCard(CardBoardSquare newSquare)
+	{
+		newSquare.isActive = true;
+		int[] fromLocation = new int[2];
+
+        foreach (CardBoardSquare boardCard in CardBoard)
+        {
+			if (boardCard.chosenForMove)
+			{
+				fromLocation = boardCard.location;
+
+                foreach (Card card in PlayerHand)
+                {
+					if (card.currentLocation[0] == fromLocation[0] && card.currentLocation[1] == fromLocation[1])
+					{
+                        card.currentLocation[0] = newSquare.location[0];//move the card
+                        card.currentLocation[1] = newSquare.location[1];
+
+                        newSquare.square.Source = card.Name + ".png"; //set the image to new square
+
+                        PlayerField.Add(card);//add the card to field
+                    }
+                }
+
+				boardCard.square.Source = PlayerDeck[0].Name = ".png";
+				boardCard.square.Scale = 1;
+				boardCard.chosenForMove = false; 
+            }
+        }
+        foreach (CardBoardSquare boardCard in CardBoard)
+        {
+			boardCard.RemoveEvents(); //remove miscellaneous events
+        }
+
+		DrawCard(PlayerDeck, fromLocation, PlayerHand); 
+    }
+
+	public void DrawCard(List<Card> deck, int[] fromLocation, List<Card> hand)
+	{
+		Card newCard = new Card(deck[0].Name, fromLocation[0], fromLocation[1]);
+
+		hand.Add(newCard);
+
+		deck.RemoveAt(0); 
+	}
+
+	public void DeleteCard(Card card)
+	{
+		CardBoardSquare effectedSquare = IdentifyCardBoardSquare(card.currentLocation);
+
+		effectedSquare.square.Source = null;
+		effectedSquare.square.BackgroundColor = Color.FromRgb(255, 255, 255);
+
+		if (card.currentLocation[1] == 1)
+		{
+			AIField.Remove(card); 
+		}
+		if (card.currentLocation[1] == 2)
+		{
+			PlayerField.Remove(card); 
+		}
+	}
+
+	public CardBoardSquare IdentifyCardBoardSquare(int[] location)
+	{
+        foreach (CardBoardSquare square in CardBoard)
+        {
+            if (square.location[0] == location[0] && square.location[1] == location[1])
+            {
+                return square;
+            }
+        }
+        return null;
+    }
+
+	public void AttackThis(CardBoardSquare targetBoard)
+	{
+		int[] targetLocation = new int[2] { targetBoard.location[0], targetBoard.location[1] };
+
+		Card target = IdentifyCard(targetLocation);
+
+		Cards targetData = App.UserRepo.GetCard(target.Name);
+
+        foreach (CardBoardSquare playerCard in CardBoard)
+        {
+			if (playerCard.chosenForAttack)
+			{
+				Card attacker = IdentifyCard(playerCard.location);
+
+				Cards attackerData = App.UserRepo.GetCard(attacker.Name); 
+
+				if(attackerData.Attack > targetData.Hitpoint)
+				{
+					DeleteCard(target); 
+				}
+				if(attackerData.Hitpoint < targetData.Attack)
+				{
+					DeleteCard(attacker); 
+				}
+
+				playerCard.square.Scale = 1; 
+			}
+        }
+        foreach (CardBoardSquare boardCard in CardBoard)
+        {
+			boardCard.ToggleCard(); 
+        }
+    }
 }
 
 public class Card
@@ -281,12 +390,14 @@ public class CardBoardSquare
 			//there is no card (square is empty)
 			if (location[1] == 2)
 			{
-				//user can move here
-			}
+                //user can move here
+                EmptySquare();
+            }
 			if (location[1] == 1)
 			{
-				//user can attack here
-			}
+                //user can attack here
+                EnemySquare();
+            }
 		}
 	}
 
@@ -322,6 +433,8 @@ public class CardBoardSquare
                 chosenForMove = false;
                 p.cardIsSelected = false;
                 square.BackgroundColor = Color.FromRgb(0, 0, 0);//black
+				//player move
+				p.PlayerMoveCard(this); 
             }
         };
         square.Clicked += DoMove;
@@ -336,6 +449,8 @@ public class CardBoardSquare
                 currentState = 0;
                 chosenForAttack = false;
                 p.cardIsSelected = false;
+				//player attack
+				p.AttackThis(this); 
             }
         };
         square.Clicked += CanAttack;
