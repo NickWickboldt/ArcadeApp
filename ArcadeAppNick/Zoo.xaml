@@ -44,7 +44,8 @@
             Text="End Turn"
             TextColor="Black"
             Padding="0"
-            x:Name="EndTurnButton"/>
+            x:Name="EndTurnButton"
+            Clicked="EndTurnButton_Clicked"/>
         <Label AbsoluteLayout.LayoutFlags="All"
                AbsoluteLayout.LayoutBounds="0.05, 0.7, 0.2, 0.05"
                BackgroundColor="LightSkyBlue"
