@@ -5,22 +5,20 @@
              Title="Zoo">
 
     <AbsoluteLayout BackgroundColor="RosyBrown">
+
         <Grid
-            x:Name="Gameboard"
+            x:Name="AIHandGrid"
             AbsoluteLayout.LayoutFlags="PositionProportional"
-            AbsoluteLayout.LayoutBounds="0.5,0.5"
+            AbsoluteLayout.LayoutBounds="0.5, 0"
             WidthRequest="1000"
-            HeightRequest="890"
+            HeightRequest="190"
             RowSpacing="15"
             ColumnSpacing="15">
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -29,6 +27,75 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         </Grid>
+
+        <Grid
+            x:Name="AIFieldGrid"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5, 0.34"
+            WidthRequest="1000"
+            HeightRequest="190"
+            RowSpacing="15"
+            ColumnSpacing="15">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <Grid
+            x:Name="PlayerFieldGrid"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5,0.66"
+            WidthRequest="1000"
+            HeightRequest="190"
+            RowSpacing="15"
+            ColumnSpacing="15">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <Grid
+            x:Name="PlayerHandGrid"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5,1"
+            WidthRequest="1000"
+            HeightRequest="190"
+            RowSpacing="15"
+            ColumnSpacing="15">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        
         <Label 
             AbsoluteLayout.LayoutFlags="All"
             AbsoluteLayout.LayoutBounds="0.05,0.2,0.2,0.05"
